@@ -1,6 +1,12 @@
 const { getStore } = require('@netlify/blobs');
 
 function store() {
+  const siteID = process.env.NETLIFY_SITE_ID;
+  const token = process.env.BLOBS_TOKEN;
+  if (siteID && token) {
+    return getStore({ name: 'nnm-data', siteID, token });
+  }
+  // 환경변수가 아직 없으면 자동 인식 방식으로 시도 (플랫폼에 따라 실패할 수 있음)
   return getStore('nnm-data');
 }
 
