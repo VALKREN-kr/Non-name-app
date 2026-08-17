@@ -737,7 +737,7 @@
         <a class="profile-menu-item" href="https://www.instagram.com/n0nm.official?igsh=dzc2aGxyYmE1MWdq&amp;igsi=dzc2aGxyYmE1MWdq" target="_blank" rel="noopener">인스타그램 <span>›</span></a>
       </div>
 
-      <div class="profile-footer">NON-NAME · <span id="profileVersion">v1.0.0</span></div>
+      <div class="profile-footer">NON-NAME · <span id="profileVersion">v1.0.1</span></div>
     </div>
 
     <!-- EVENT -->
@@ -786,7 +786,7 @@
     </div>
   </div>
 
-  <div class="version-tag">v1.0.0</div>
+  <div class="version-tag">v1.0.1</div>
 
   <div class="tabbar">
     <button class="tab-btn active" data-tab="home" onclick="goTab('home')">
@@ -986,6 +986,9 @@
       pName.textContent = user.email || name;
       pSub.textContent = '찜한 상품이 계정에 저장되고 있어요';
       pBtn.textContent = '로그아웃';
+      const roles = (user.app_metadata && user.app_metadata.roles) || [];
+      pSub.innerHTML = '찜한 상품이 계정에 저장되고 있어요'
+        + (roles.includes('admin') ? ' · <span style="color:#35E9D6">ADMIN 인식됨</span>' : '');
       syncWishlistFromUser(user);
     } else {
       chip.textContent = '로그인';
